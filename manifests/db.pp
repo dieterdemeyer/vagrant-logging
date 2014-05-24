@@ -47,14 +47,14 @@ mysql::rights { 's4t_mrt_security':
 }
 
 class { 'packetbeat':
-  elasticsearch_host => 'elasticsearch.example.com',
-  protocols_monitored =>
-    {
-      'http' => '80, 8080',
-      'mysql' => '3306'
-    },
-  processes_monitored  =>
-    { 'mysqld'  => 'mysqld',
-      'nginx'   => 'nginx'
-    }
+  version             => '0.2.0-1.el6',
+  versionlock         => true,
+  elasticsearch_host  => 'elasticsearch.example.com',
+  protocols_monitored => {
+    'mysql' => '3306'
+  },
+  processes_monitored => {
+    'mysqld' => 'mysqld'
+  }
 }
+

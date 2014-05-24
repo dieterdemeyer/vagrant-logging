@@ -74,5 +74,14 @@ tomcat::instance::jmx_authentication { 'setting jmx security':
 Sunjdk::Instance['jdk.1.7.0_06-fcs'] -> Tomcat::Server["tomcat-${tomcat_version}"] -> Tomcat::Instance['tomcat00']
 
 class { 'packetbeat':
-  elasticsearch_host => 'elasticsearch.example.com'
+  version             => '0.2.0-1.el6',
+  versionlock         => true,
+  elasticsearch_host  => 'elasticsearch.example.com',
+  protocols_monitored => {
+    'http' => '8080'
+  },
+  processes_monitored => {
+    'tomcat'  => 'tomcat00'
+  }
 }
+
